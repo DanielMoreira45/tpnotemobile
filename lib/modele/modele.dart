@@ -24,6 +24,7 @@ class NombreMagique {
         _indiceMoyen = indiceMoyen,
         _indiceDifficile = indiceDifficile;
 
+  int get valeur => _valeur;
   String get indiceFacile => _indiceFacile;
   String get indiceMoyen => _indiceMoyen;
   String get indiceDifficile => _indiceDifficile;
