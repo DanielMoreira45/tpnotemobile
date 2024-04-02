@@ -18,7 +18,9 @@ class ProviderDataBase {
   }
 
   static Future<NombreMagique> getNombreMagique() async {
+    DatabaseHelper.updateBD;
     await initProvider();
+
     List<Map<String, dynamic>> result = await _database.query('NombreMagique');
     if (result.isNotEmpty) {
       List<Map<String, dynamic>> mutableList = List.from(result);
