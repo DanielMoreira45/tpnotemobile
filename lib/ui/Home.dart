@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget{
                   GoRouter.of(context).go('/regles');
                 },
                 child: const Text('Regles du jeu'),
-              )
+              ),
             ],
           )
       ),

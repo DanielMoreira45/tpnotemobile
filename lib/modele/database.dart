@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 class DatabaseHelper {
   static Database? _database;
 
-  Future<Database> getdatabase() async {
+  static Future<Database> getdatabase() async {
     if (_database != null) {
       return _database!;
     }
@@ -12,7 +12,7 @@ class DatabaseHelper {
     return _database!;
   }
 
-  Future<Database> initDatabase() async {
+  static Future<Database> initDatabase() async {
     String path = join(await getDatabasesPath(), 'ma_bd.db');
     return openDatabase(
       path,
@@ -36,7 +36,42 @@ class DatabaseHelper {
               FOREIGN KEY (nombreMagique_id) REFERENCES NombreMagique(id)
           )
           ''');
+
+        List<Map<String, dynamic>> nombreMagiqueEntries = [
+          {
+            'valeur': 42,
+            'indiceFacile': 'C\'est un nombre pair',
+            'indiceMoyen': 'C\'est un multiple de 6',
+            'indiceDifficile': 'C\'est la réponse à la vie, l\'univers et le reste'
+          },
+          {
+            'valeur': 17,
+            'indiceFacile': 'Il est premier',
+            'indiceMoyen': 'Il est un nombre de Fermat',
+            'indiceDifficile': 'Il est la somme de deux carrés',
+          },
+          {
+            'valeur': 144,
+            'indiceFacile': 'Il est un carré parfait',
+            'indiceMoyen': 'Il est le carré d\'un nombre entier',
+            'indiceDifficile': 'Il est divisible par 12',
+          },
+          {
+            'valeur': 99,
+            'indiceFacile': 'Il est divisible par 9',
+            'indiceMoyen': 'La somme de ses chiffres est égale à 18',
+            'indiceDifficile': 'Il est un multiple de 11',
+          },
+        ];
+
+        for (var entry in nombreMagiqueEntries) {
+          await db.insert('NombreMagique', entry);
+        }
       },
     );
+  }
+
+  static void deleteBd(){
+
   }
 }
