@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:tpnotemobile/ui/Jouer.dart';
+import 'package:tpnotemobile/ui/Regles.dart';
 import 'package:tpnotemobile/ui/Score.dart';
 
 
@@ -33,7 +34,7 @@ final router = GoRouter(
         GoRoute(
           path: 'regles',
           name: 'regles',
-          builder: (context, state) => const MyHomePage(title: 'Règles'),
+          builder: (context, state) => const ReglePage(),
         ),
       ],
     ),

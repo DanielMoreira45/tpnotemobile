@@ -54,7 +54,7 @@ class _JouerPageState extends State<JouerPage> {
     } else if (_essaisRestants == 0) {
       return pagePerdu();
     } else if (_gagne == true){
-      return pageGagnee();
+      return pageGagnee(nombreMagique);
     } else {
       return Scaffold(
         appBar: AppBar(
@@ -255,7 +255,7 @@ class _JouerPageState extends State<JouerPage> {
     );
   }
 
-  Scaffold pageGagnee() {
+  Scaffold pageGagnee(NombreMagique nombreMagique) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Gagné'),
@@ -270,6 +270,8 @@ class _JouerPageState extends State<JouerPage> {
                   _difficulte = null;
                   _gagne = false;
                   _essaisController.clear();
+
+                  ajouterPartieHistorique(nombreMagique.valeur, 10 - _essaisRestants, 1);
                 });
               },
               child: const Text('Rejouer'),
@@ -284,5 +286,9 @@ class _JouerPageState extends State<JouerPage> {
   void dispose() {
     _essaisController.dispose();
     super.dispose();
+  }
+
+  void ajouterPartieHistorique(int nombreMagiqueId, int tentative, int tentativeReussie) {
+    ProviderDataBase.ajouterPartieHistorique(nombreMagiqueId, tentative, tentativeReussie);
   }
 }

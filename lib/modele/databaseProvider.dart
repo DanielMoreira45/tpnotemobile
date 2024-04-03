@@ -39,4 +39,20 @@ class ProviderDataBase {
     }
   }
 
+  static void ajouterPartieHistorique(int nombreMagiqueId, int tentative, int tentativeReussie) async {
+    if (_database.isOpen) {
+      await _database.insert(
+        'HistoriqueParties',
+        {
+          'nombreMagique_id': nombreMagiqueId,
+          'tentative': tentative,
+          'tentative_reussie': tentativeReussie,
+        },
+      );
+    } else {
+      throw Exception('La base de données n\'est pas ouverte.');
+    }
+  }
+
+
 }
